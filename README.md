@@ -19,13 +19,13 @@ In order to install it to your project add `emoji.js` :smiley: and `keyboard.js`
 
 ## :framed_picture: Collection
 
-<img src="collection/mobile_dark_view_1.png" width="250" height="500"> <img src="collection/mobile_dark_view_2.png" width="250" height="500"> <img src="collection/mobile_view_1.png" width="250" height="500"> <img src="collection/mobile_view_2.png" width="250" height="500"> <img src="collection/mobile_view_3.png" width="250" height="500"> <img src="collection/mobile_view_4.png" width="250" height="500"> <img src="collection/mobile_view_5.png" width="250" height="500"> <img src="collection/wide_view.png" width="600" height="150"> <img src="collection/wide_dark_view.png" width="600" height="150">
+<img src="collection/mobile_dark_view_1.png" width="250" height="500"> <img src="collection/mobile_dark_view_2.png" width="250" height="500"> <img src="collection/mobile_view_1.png" width="250" height="500"> <img src="collection/mobile_view_2.png" width="250" height="500"> <img src="collection/mobile_view_3.png" width="250" height="500"> <img src="collection/mobile_view_4.png" width="250" height="500"> <img src="collection/mobile_view_5.png" width="250" height="500"> <img src="collection/wide_view.png" width="600" height="180"> <img src="collection/wide_dark_view.png" width="600" height="180">
 
 ## Licences :balance_scale:
 
 ### Gemoji
 
-The `emoji.js` file provides a full list of categories and tags emojis. It can be found as `emoji.json` [gemoji's](https://github.com/github/gemoji) repository, licensed under the MIT License: <http://opensource.org/licenses/MIT>
+The `emoji.js` file provides a full list of categories and tags emojis. It can be found as `emoji.json` at [gemoji's](https://github.com/github/gemoji) repository, licensed under the MIT License: <http://opensource.org/licenses/MIT>
 
 ### dcode
 
