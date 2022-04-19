@@ -1,0 +1,213 @@
+:root {
+    --keyboard_background: rgb(220, 220, 220);
+    --keyboard_shadow: rgba(0, 0, 0, 0.5);
+    --key_color: rgb(43, 43, 43);
+    --active_key: rgb(140, 140, 140);
+    --key_shadow: rgba(0, 0, 0, 0.2);
+    --white-dark_color: #ffffff;
+    --border: #6e6e6e;
+    --textarea_background: #f8f8f8;
+}
+
+body.dark_theme {
+    --keyboard_background: rgb(0, 0, 0);
+    --keyboard_shadow: rgba(196, 196, 196, 0.2);
+    --key_color: rgb(255, 255, 255);
+    --active_key: rgb(140, 140, 140);
+    --key_shadow: rgba(255, 255, 255, 0.4);
+    --white-dark_color: #202124 !important;
+    --border: #ccc;
+    --textarea_background: #9f9e9e;
+}
+
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: var(--white-dark_color);
+}
+
+.centered {
+    text-align: center
+}
+
+h1 {
+    text-align: center;
+    color: var(--key_color);
+}
+
+textarea {
+    min-width: 300px;
+    width: 60%;
+    height: 150px;
+    padding: 12px 12px;
+    box-sizing: border-box;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    background-color: var(--keyboard_background);
+    color: var(--key_color);
+    transition: .3s ease-in-out;
+}
+
+textarea:active,
+textarea:focus {
+    outline-style: none !important;
+    color: var(--key_color);
+}
+
+.change_theme {
+    display: flex;
+    position: relative;
+    top: 10px;
+    justify-content: end;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.theme_icon {
+    cursor: pointer;
+    transition: .3s;
+    color: var(--key_color);
+    transition: .5s ease-in-out;
+}
+
+
+ /* ---------- KEYBOARD ---------- */
+
+.keyboard {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background: var(--keyboard_background);
+    box-shadow: 0 0 10px var(--keyboard_shadow);
+    user-select: none;
+    transition-property: bottom, background, box-shadow;
+    transition-timing-function:ease-in-out, ease-in-out, ease-in-out;
+    transition-duration: .8s, .3s, .5s
+}
+
+.keyboard_hidden {
+    bottom: -100%;
+}
+
+.keyboard_keys {
+    text-align: center;
+}
+
+.keyboard_key {
+    width: 6%;
+    height: 45px;
+    max-width: 90px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: none;
+    background: var(--white-dark_color);
+    box-shadow: 0 1px var(--key_shadow);
+    color: var(--key_color);
+    font-size: 1.05rem;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    vertical-align: top;
+    padding: 0;
+    margin: 3px;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+@media screen and (max-width: 480px) {
+    .keyboard_key {
+        width: 8%;
+        margin: 1.5px;
+    }
+}
+
+.keyboard_key:active {
+    background: var(--active_key);
+}
+
+.wide_key {
+    width: 12%;
+}
+
+.more_wide_key {
+    width:15%;
+    max-width: 120px;
+}
+
+.extra_wide_key {
+    width: 24%;
+    max-width: 500px;
+}
+
+.active_button{
+    color: var(--white-dark_color);
+    background: var(--key_color);
+}
+
+.closebutton {
+    width: 24%;
+    height: 8px;
+    max-width: 200px;
+}
+
+
+/* ---------- EMOJI ---------- */
+
+.option_icons {
+    display: inline-flex;
+    width:95%;
+    max-width: 500px;
+    border-bottom: 1px solid var(--key_color);
+    justify-content: space-evenly;
+    padding: 4px 0px;
+}
+
+.option_button {
+    background: transparent;
+    border: none;
+    color: var(--key_color);
+    padding: 0;
+    border-bottom: 2px solid transparent;
+}
+
+.active_option {
+    color: #4242fc;
+    border-bottom: 2px solid #4242fc;
+
+}
+
+.all_emoji {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 95%;
+    max-width: 500px;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.emoji {
+    font-size: 1.5rem;
+    padding: 1px 8px;
+}
+
+.option_block {
+    max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    scrollbar-width: none;
+}
+
+.all_emoji::-webkit-scrollbar {
+    display: none;
+}
+
+.d-none {
+    display: none;
+}
