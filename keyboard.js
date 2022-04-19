@@ -77,17 +77,12 @@ const keyboard = {
                 this.open(element.value, currentValue => {
                     element.value = currentValue;
                 });
-            });    
+            });
         });
     },
 
     createKeyboard(layout) {
         const fragment = document.createDocumentFragment();
-
-        const createIcons = (icon_name) => {
-            return `<i class="material-icons">${icon_name}</i>`
-        };
-        
 
         layout.forEach(key => {
             const keyElement = document.createElement('button');
@@ -106,9 +101,10 @@ const keyboard = {
             switch(key) {
                 case 'backspace':
                     keyElement.classList.add('more_wide_key');
-                    keyElement.innerHTML = createIcons('backspace');
+                    keyElement.innerHTML = this.createIcons('backspace');
 
                     keyElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         let [, rem, del] = this.properties.value.match(/(.*)(.)/u);
                         this.properties.value = rem;
                         //this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
@@ -118,9 +114,10 @@ const keyboard = {
 
                 case 'caps':
                     keyElement.classList.add('more_wide_key');
-                    keyElement.innerHTML = createIcons('keyboard_capslock');
+                    keyElement.innerHTML = this.createIcons('keyboard_capslock');
 
                     keyElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         this.toggleCaps();
                         keyElement.classList.toggle('active_button', this.properties.capsLock)
                     });
@@ -128,9 +125,10 @@ const keyboard = {
 
                 case 'enter':
                     keyElement.classList.add('wide_key');
-                    keyElement.innerHTML = createIcons('keyboard_return');
+                    keyElement.innerHTML = this.createIcons('keyboard_return');
 
                     keyElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         this.properties.value += '\n';
                         this.triggerEvent('oninput');
                     });
@@ -138,9 +136,10 @@ const keyboard = {
 
                 case 'space':
                     keyElement.classList.add('extra_wide_key');
-                    keyElement.innerHTML = createIcons('space_bar');
+                    keyElement.innerHTML = this.createIcons('space_bar');
 
                     keyElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         this.properties.value += ' ';
                         this.triggerEvent('oninput');
                     });
@@ -157,9 +156,10 @@ const keyboard = {
 
                 case 'emoji':
                     keyElement.classList.add('wide_key');
-                    keyElement.innerHTML = createIcons('insert_emoticon');
+                    keyElement.innerHTML = this.createIcons('insert_emoticon');
 
                     keyElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         this.toggleEmoji();
                         keyElement.classList.toggle('active_button', this.properties.emoji)
                     });
@@ -167,9 +167,10 @@ const keyboard = {
 
                 case 'language':
                     keyElement.classList.add('wide_key');
-                    keyElement.innerHTML = createIcons('language');
+                    keyElement.innerHTML = this.createIcons('language');
 
                     keyElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         this.toggleLanguage();
                     });
                     break;
@@ -179,6 +180,7 @@ const keyboard = {
                     keyElement.innerHTML = '?123';
 
                     keyElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         this.toggleSymbols();
                         keyElement.classList.toggle(this.properties.symbols)
                     });    
@@ -189,6 +191,7 @@ const keyboard = {
                     keyElement.innerHTML = 'ABC';
 
                     keyElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         this.toggleSymbols();
                         keyElement.classList.toggle(this.properties.symbols)
                     });
@@ -198,6 +201,7 @@ const keyboard = {
                     keyElement.textContent = key.toLocaleLowerCase();
                     
                     keyElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
                         this.triggerEvent('oninput');
                     });
@@ -244,10 +248,6 @@ const keyboard = {
         frag.appendChild(keyElement);
         frag.appendChild(document.createElement('br'));
 
-        const createIcons = (icon_name) => {
-            return `<i class="material-icons">${icon_name}</i>`
-        };
-
         const options_buttons = document.createElement('div');
         options_buttons.classList.add('option_icons');
 
@@ -257,7 +257,7 @@ const keyboard = {
             optionElement.setAttribute('type', 'button');
             optionElement.classList.add(`${option}`);
             optionElement.classList.add('option_button');
-            optionElement.innerHTML = createIcons(`${option}`);
+            optionElement.innerHTML = this.createIcons(`${option}`);
 
             if (option == 'sentiment_satisfied'){
                 optionElement.classList.add('active_option');
@@ -266,6 +266,7 @@ const keyboard = {
             switch(option) {
                 case 'abc':
                     optionElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         document.querySelector('.keyboard_keys').innerHTML = "";
                         document.querySelector('.keyboard_keys').appendChild(this.createKeyboard(this.keyLayouts[`${this.properties.language}`]));
                         this.elements.keys = this.elements.keysContainer.querySelectorAll('.keyboard_key');
@@ -274,6 +275,7 @@ const keyboard = {
 
                 case 'backspace':
                     optionElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         let [, rem, del] = this.properties.value.match(/(.*)(.)/u);
                         this.properties.value = rem;
                         this.triggerEvent('oninput');
@@ -282,6 +284,7 @@ const keyboard = {
                     
                 default:
                     optionElement.addEventListener('click', () => {
+                        this.setFocus(event);
                         this.toggleOptions(option);
                     });
                     break;     
@@ -304,16 +307,17 @@ const keyboard = {
 
             emojis.forEach(emoji => {
                 if (emoji['category'] == `${Object.values(opt)}`) {
-                    const span_elem = document.createElement('span');
-                    span_elem.classList.add('emoji');
-                    span_elem.innerHTML = emoji['emoji'];
+                    const button_elem = document.createElement('button');
+                    button_elem.classList.add('emoji');
+                    button_elem.innerHTML = emoji['emoji'];
 
-                    span_elem.addEventListener('click', () => {
-                        this.properties.value += span_elem.innerText;
+                    button_elem.addEventListener('click', () => {
+                        this.setFocus(event);
+                        this.properties.value += button_elem.innerText;
                         this.triggerEvent('oninput');
                     });
 
-                    option_block.appendChild(span_elem);  
+                    option_block.appendChild(button_elem);  
                 }  
             });
 
@@ -325,6 +329,10 @@ const keyboard = {
 
         
         return frag;
+    },
+
+    createIcons(icon_name) {
+        return `<i class="material-icons">${icon_name}</i>`
     },
 
     triggerEvent(handler) {
@@ -401,6 +409,17 @@ const keyboard = {
         this.eventHandlers.oninput = oninput;
         this.eventHandlers.onclose = onclose;
         this.elements.main.classList.add('keyboard_hidden');
+    },
+
+    stopEvent(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        return false;
+    },
+
+    setFocus(e) {
+        document.querySelector('.virtual_keyboard').focus();
+        return this.stopEvent(e);
     }
 };
 

@@ -194,6 +194,13 @@ textarea:focus {
 .emoji {
     font-size: 1.5rem;
     padding: 1px 8px;
+    border: none;
+    background: transparent;
+}
+
+.emoji:active {
+    background: var(--active_key);
+    border-radius: 50%;
 }
 
 .option_block {
