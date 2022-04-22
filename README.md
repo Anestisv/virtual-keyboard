@@ -2,7 +2,7 @@
 
 ## :information_source: Overview
 
-This is a virtual keyborad, mobile responsive and easily be integratable in your project. 
+This is a virtual keyborad, mobile responsive and easily can be integratable in your project. 
 
 `Supported languages`:
 
